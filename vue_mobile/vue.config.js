@@ -33,14 +33,15 @@ module.exports = {
     },
     chainWebpack: config => {
         config.module
-            .rule('css')
-            .test(/.css$/)
+            .rule('scss')
             .oneOf('vue')
-            .resourceQuery(/\?vue/)
-            .use('px2rem')
+            .use('px2rem-loader')
             .loader('px2rem-loader')
+            .before('postcss-loader') // this makes it work.
             .options({
-                remUnit: 37.5
+                remUnit: 75,
+                remPrecision: 8
             })
+            .end()
     },
 }
