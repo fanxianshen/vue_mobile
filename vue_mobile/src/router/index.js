@@ -1,16 +1,22 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import HelloWorld from '@/components/HelloWorld'
-import Index from '@/pages/index'
+Vue.use(Router)
 
-export default new Router({
-    routes: [{
-        path: '/',
-        name: 'Index',
-        component: Index
-    }]
+const Routes = [
+  { path: '*', redirect: '/welcome' },
+  {
+    path: '/welcome',
+    name: '欢迎页面',
+    component:() => import('@//components/HelloWorld.vue')
+  },
+
+]
+
+const createRouter = () => new Router({
+  routes: Routes
 })
 
+const router = createRouter()
 
-Vue.use(Router)
+export default router;
