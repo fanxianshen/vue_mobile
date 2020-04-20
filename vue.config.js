@@ -40,7 +40,7 @@ module.exports = {
     }
   },
   devServer: {
-    port: 1818, // 端口号
+    port: 8081, // 端口号
     host: getIPAdress(),
     https: false, // https:{type:Boolean}
     open: true, //配置自动启动浏览器

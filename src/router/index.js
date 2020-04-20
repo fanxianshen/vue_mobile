@@ -3,14 +3,29 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-const Routes = [
-  { path: '*', redirect: '/welcome' },
-  {
-    path: '/welcome',
-    name: '欢迎页面',
-    component:() => import('@//components/HelloWorld.vue')
+const Routes = [{ // 首页模板
+    path: '/',
+    name: 'index',
+    component: () => import('../pages/index'),
+    redirect: '/rank',
+    children: [{
+      path: '/rank',
+      name: 'rank',
+      component: () => import('../components/rankList')
+    }, {
+      path: '/gift',
+      name: 'gift',
+      component: () => import('../components/sendGift')
+    }, {
+      path: '/surprise',
+      name: 'surprise',
+      component: () => import('../components/surprise')
+    }]
   },
-
+  {
+    path: '*',
+    redirect: '/rank'
+  }
 ]
 
 const createRouter = () => new Router({
