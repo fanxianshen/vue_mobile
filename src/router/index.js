@@ -13,7 +13,7 @@ const routes = [{ // 首页模板
       path: '/rank',
       name: 'rank',
       meta: {
-        title: "排行榜"
+        title: "累储返金币"
       },
       component: () => import('../components/rankList')
     }, {
@@ -35,6 +35,9 @@ const routes = [{ // 首页模板
   {
     path: '/about',
     name: 'About',
+    meta: {
+      title: "关于"
+    },
     component: () => import('../views/About.vue')
   },
   {
@@ -51,9 +54,9 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  console.log(to, '前置第一个参数')
-  console.log(from, '前置第二个参数')
-  console.log(next, '前置第三个参数')
+  if (to.meta.title) {
+    document.title = to.meta.title
+  }
   next();
 });
 

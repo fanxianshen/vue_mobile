@@ -12,7 +12,7 @@
             <img :src="item" alt="" title="">
           </li>
         </ul>
-        <div :class="getBtnStatus(3).cls" @click="getWelfare(1,3)"></div>
+        <div :class="getBtnStatus(3).cls" @click="getWelfare({id:1,status:3},1)"></div>
       </div>
     </div>
     <div class="moon_gift">
@@ -27,10 +27,24 @@
             <img :src="item" alt="" title="">
           </li>
         </ul>
-        <div :class="getBtnStatus(2).cls" @click="getWelfare(1,2)"></div>
+        <div :class="getBtnStatus(2).cls" @click="getWelfare({id:1,status:2},2)"></div>
       </div>
     </div>
-    <modal-mask :show="false">11111</modal-mask>
+    <modal-mask :show="showMask">
+      <template>
+        <div class="alert_body">
+          <img class="gift" v-if="giftType ==1" src="../assets/img/start_box.png">
+          <img class="gift" v-else src="../assets/img/moon_box.png">
+          <p class="gift_tip">
+            成功領取
+            <span v-if="giftType ==1">週年星星禮包</span>
+            <span v-else>週年月亮禮包</span>
+            ，可喜可賀！
+          </p>
+          <div class="btn" @click="showMask = !showMask"></div>
+        </div>
+      </template>
+    </modal-mask>
   </div>
 </template>
 
@@ -59,6 +73,7 @@ export default {
         require("../assets/img/star/2.png"),
         require("../assets/img/star/3.png"),
       ],
+      showMask: false,
     };
   },
   methods: {
@@ -82,9 +97,19 @@ export default {
           };
       }
     },
-    getWelfare(id, type) {
-      if (type != 2) return;
-      console.log(333);
+    getWelfare(obj, type) {
+      let { status } = obj;
+      if (status != 2) return;
+      // 防止多点
+      if (this.flag) {
+        return;
+      }
+      this.flag = true;
+      setTimeout(() => {
+        this.flag = false;
+        this.showMask = true;
+        this.giftType = type;
+      }, 500);
     },
   },
 };
@@ -176,6 +201,38 @@ export default {
 
   .actived {
     background-image: url("../assets/img/get_gift_read.png");
+  }
+}
+.alert_body {
+  text-align: center;
+  width: 680px;
+  height: 564px;
+  background-image: url(../assets/img/alert_bg.png);
+  background-size: 100% 100%;
+  padding-top: 120px;
+  .gift {
+    width: 370px;
+    height: 280px;
+    display: inline-block;
+  }
+
+  .gift_tip {
+    font-size: 30px;
+    color: #fff;
+    span {
+      color: #fdff5c;
+    }
+  }
+  .btn {
+    background-image: url("../assets/img/sure_btn.png");
+    width: 402px;
+    height: 96px;
+    background-size: 100% 100%;
+    position: absolute;
+    bottom: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: block;
   }
 }
 </style>

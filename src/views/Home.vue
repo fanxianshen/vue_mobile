@@ -15,9 +15,9 @@
         <mizCountdown :endTime="1587525261000" :startTime="1587438861000" class="bg_setting"/>
       </div>
       <!--=S 路由 -->
-      <keep-alive>
-        <router-view></router-view>
-      </keep-alive>
+      <!-- <keep-alive> -->
+      <router-view></router-view>
+      <!-- </keep-alive> -->
       <!--=E 路由 -->
     </main>
   </div>
@@ -26,22 +26,13 @@
 <script>
 // @ is an alias to /src
 import mizCountdown from "@/components/common/mizCountdown";
-import axios from 'axios';
+import axios from "axios";
 export default {
   name: "Home",
   components: {
     mizCountdown,
   },
-  created() {
-    axios
-      .get("/parameter/query")
-      .then((res) => {
-        console.log(2222,res)
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  },
+  created() {},
 };
 </script>
 <style lang="scss">
