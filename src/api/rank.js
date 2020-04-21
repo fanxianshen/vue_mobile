@@ -9,9 +9,7 @@ import qs from 'qs'; // 根据需求是否导入qs模块
 const rank = {
     // 新闻列表
     list(params) {
-        return axios.get(`${base.rankList}`, {
-            params: params
-        });
+        return axios.post(`${base.rankList}`, params);
     },
     // post提交
     login(params) {

@@ -30,6 +30,14 @@
         <div :class="getBtnStatus(2).cls" @click="getWelfare({id:1,status:2},2)"></div>
       </div>
     </div>
+    <!-- <loading :isCenter="true"></loading> -->
+    <modal-mask :show="isLoading">
+      <template>
+        <div class="loading_content">
+          <loading></loading>
+        </div>
+      </template>
+    </modal-mask>
     <modal-mask :show="showMask">
       <template>
         <div class="alert_body">
@@ -50,10 +58,12 @@
 
 <script>
 import ModalMask from "@/components/common/modalMask";
+import loading from "@/components/common/loading";
 export default {
   name: "Surprise",
   components: {
     ModalMask,
+    loading,
   },
   data() {
     return {
@@ -105,9 +115,11 @@ export default {
         return;
       }
       this.flag = true;
+      this.isLoading = true;
       setTimeout(() => {
         this.flag = false;
         this.showMask = true;
+        this.isLoading = false;
         this.giftType = type;
       }, 500);
     },

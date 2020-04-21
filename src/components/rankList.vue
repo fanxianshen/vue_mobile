@@ -28,9 +28,9 @@
             />
             <!--E item -->
           </div>
-          <!-- <loading :isCenter="true" v-show="isLoading"/> -->
+          <loading :isCenter="true" v-show="isLoading"/>
           <div class="mod_empty" v-show="isEmpty">暫無數據</div>
-          <div class="pagination">
+          <div class="pagination" v-if="list.length>0">
             <div class="pagination_btn first" @click="handleChangePage('home')">首頁</div>
             <div class="pagination_btn prev" @click="handleChangePage('up')">上一頁</div>
             <div class="pagination_btn next" @click="handleChangePage('down')">下一頁</div>
@@ -40,17 +40,47 @@
         <div class="rank_list_bg2"></div>
       </div>
     </div>
-    <div class="rank_rule" v-show="!showRank"></div>
+    <div class="rank_rule" v-show="!showRank">
+      <div class="rule_header">
+        <div class="rule_header_img" @click="showRank = !showRank">
+          <img src="../assets/img/return_rank.png">
+        </div>
+        <div class="rule_rank">
+          <div class="rule_num_content">
+            <div>
+              <p class="opc7">當前排名</p>
+              <p class="rank_num">100</p>
+            </div>
+            <div>
+              <p class="opc7">可領取返還金幣</p>
+              <p class="rank_num">300</p>
+            </div>
+          </div>
+        </div>
+        <p class="rank_notice">榜單每小時刷新一次，您還沒有上榜，再接再厲哦！</p>
+      </div>
+      <div class="rule_text">
+        <img src="../assets/img/rule_content.jpg">
+      </div>
+      <div class="rule_reward">
+        <img src="../assets/img/rule_reward01.jpg">
+        <img src="../assets/img/rule_reward02.jpg">
+        <img src="../assets/img/rule_reward03.jpg">
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import listItem from "./common/listItem";
+import listItem from "@/components/common/listItem";
+import loading from "@/components/common/loading";
 import axios from "axios";
+import { setTimeout } from "timers";
 export default {
   name: "RankList",
   components: {
     listItem,
+    loading,
   },
   data() {
     return {
@@ -107,17 +137,22 @@ export default {
           this.pager.page++;
         }
       }
+      this.list = [];
       document.getElementById("toTop").click();
       this.getRankData();
     },
     getRankData() {
+      this.isLoading = true;
       this.$api.rank.list(this.pager).then((res) => {
         // 执行某些操作
         if (this.pager.page == 1 && res.data.length == 0) {
           this.isEmpty = true;
           return;
         }
-        this.list = res.data;
+        setTimeout(() => {
+          this.isLoading = false;
+          this.list = res.data.list;
+        }, 1000);
       });
     },
   },
@@ -245,7 +280,68 @@ export default {
       }
     }
   }
+
   .rank_rule {
+    .rule_header {
+      background: url(../assets/img/rule_bg.jpg) no-repeat;
+      background-size: 100% 100%;
+      height: 433px;
+      width: 100%;
+      .rule_header_img {
+        width: 702px;
+        margin: 0 auto;
+        img {
+          width: 100%;
+        }
+      }
+      .rule_rank {
+        background: url(../assets/img/rule_rank.png) no-repeat;
+        background-size: 100% 100%;
+        height: 203px;
+        width: 704px;
+        margin: 0 auto;
+        .rule_num_content {
+          display: flex;
+          text-align: center;
+          padding-top: 50px;
+          color: #ffffff;
+          font-size: 28px;
+          & > div {
+            flex: 1;
+          }
+          .rank_num {
+            font-size: 40px;
+            font-weight: 700;
+            margin-top: 20px;
+          }
+          .opc7 {
+            opacity: 0.78;
+          }
+        }
+      }
+      .rank_notice {
+        margin-top: 15px;
+        font-size: 24px;
+        color: #81a5f6;
+        text-align: center;
+      }
+    }
+
+    .rule_text {
+      font-size: 0;
+      line-height: 0;
+      img {
+        height: 941px;
+        width: 100%;
+      }
+    }
+    .rule_reward {
+      font-size: 0;
+      line-height: 0;
+      img {
+        width: 100%;
+      }
+    }
   }
 }
 </style>

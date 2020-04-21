@@ -1,351 +1,70 @@
-let demoList = [{
-  "sort": 1,
-  "id": 1010731,
-  "id2": 9,
-  "name": "maomi2",
-  "icon": "https://res.miyachat.com/beta/upload/icon/1582732800/5E576C2B/5E578CD3F6C2B/158279599024221010731_0.jpg",
-  "gold": 89000000,
-  "point": 89000000,
-  "num": 1,
-  "roomId": 0,
-  "roomName": "",
-  "likeNum": 0,
-  "isLike": false,
-  "msg": "",
-  "lastPlayerId": 0,
-  "resource": "",
-  "resultCreateTime": 0
-}, {
-  "sort": 2,
-  "id": 1003377,
-  "id2": 0,
-  "name": "江小白",
-  "icon": "https://res.miyachat.com/beta/upload/icon/1582732800/5E576C2B/5E578CD3F6C2B/158279599024221010731_0.jpg",
-  "gold": 37000000,
-  "point": 37000000,
-  "num": 10,
-  "roomId": 0,
-  "roomName": "",
-  "likeNum": 0,
-  "isLike": false,
-  "msg": "",
-  "lastPlayerId": 0,
-  "resource": "",
-  "resultCreateTime": 0
-}, {
-  "sort": 3,
-  "id": 1015412,
-  "id2": 0,
-  "name": "在",
-  "icon": "https://res.miyachat.com/beta/upload/icon/1582732800/5E576C2B/5E578CD3F6C2B/158279599024221010731_0.jpg",
-  "gold": 19000000,
-  "point": 19000000,
-  "num": 1,
-  "roomId": 0,
-  "roomName": "",
-  "likeNum": 0,
-  "isLike": false,
-  "msg": "",
-  "lastPlayerId": 0,
-  "resource": "",
-  "resultCreateTime": 0
-}, {
-  "sort": 4,
-  "id": 1002382,
-  "id2": 0,
-  "name": "maomi12",
-  "icon": "https://res.miyachat.com/beta/upload/icon/1582732800/5E576C2B/5E578CD3F6C2B/158279599024221010731_0.jpg",
-  "gold": 19000000,
-  "point": 19000000,
-  "num": 1,
-  "roomId": 0,
-  "roomName": "",
-  "likeNum": 0,
-  "isLike": false,
-  "msg": "",
-  "lastPlayerId": 0,
-  "resource": "",
-  "resultCreateTime": 0
-}, {
-  "sort": 5,
-  "id": 1019704,
-  "id2": 0,
-  "name": "只是一嘻嘻圆桌派夺得",
-  "icon": "https://res.miyachat.com/beta/upload/icon/1582732800/5E576C2B/5E578CD3F6C2B/158279599024221010731_0.jpg",
-  "gold": 10654421,
-  "point": 10654421,
-  "num": 3,
-  "roomId": 0,
-  "roomName": "",
-  "likeNum": 0,
-  "isLike": false,
-  "msg": "",
-  "lastPlayerId": 0,
-  "resource": "",
-  "resultCreateTime": 0
-}, {
-  "sort": 6,
-  "id": 1010185,
-  "id2": 7777777,
-  "name": "maomi17",
-  "icon": "https://res.miyachat.com/beta/upload/icon/1582732800/5E576C2B/5E578CD3F6C2B/158279599024221010731_0.jpg",
-  "gold": 3513003,
-  "point": 3513003,
-  "num": 10,
-  "roomId": 0,
-  "roomName": "",
-  "likeNum": 0,
-  "isLike": false,
-  "msg": "",
-  "lastPlayerId": 0,
-  "resource": "",
-  "resultCreateTime": 0
-}, {
-  "sort": 7,
-  "id": 1020302,
-  "id2": 0,
-  "name": "☞哈哈健健康康",
-  "icon": "https://res.miyachat.com/beta/upload/icon/1582732800/5E576C2B/5E578CD3F6C2B/158279599024221010731_0.jpg",
-  "gold": 1500000,
-  "point": 1500000,
-  "num": 1,
-  "roomId": 0,
-  "roomName": "",
-  "likeNum": 0,
-  "isLike": false,
-  "msg": "",
-  "lastPlayerId": 0,
-  "resource": "",
-  "resultCreateTime": 0
-}, {
-  "sort": 8,
-  "id": 1016418,
-  "id2": 0,
-  "name": "一嘻嘻我摸鱼头",
-  "icon": "https://res.miyachat.com/beta/upload/icon/1582732800/5E576C2B/5E578CD3F6C2B/158279599024221010731_0.jpg",
-  "gold": 1500000,
-  "point": 1500000,
-  "num": 1,
-  "roomId": 0,
-  "roomName": "",
-  "likeNum": 0,
-  "isLike": false,
-  "msg": "",
-  "lastPlayerId": 0,
-  "resource": "",
-  "resultCreateTime": 0
-}, {
-  "sort": 9,
-  "id": 1001096,
-  "id2": 0,
-  "name": "期末考",
-  "icon": "https://res.miyachat.com/beta/upload/icon/1582732800/5E576C2B/5E578CD3F6C2B/158279599024221010731_0.jpg",
-  "gold": 1011096,
-  "point": 1011096,
-  "num": 2,
-  "roomId": 0,
-  "roomName": "",
-  "likeNum": 0,
-  "isLike": false,
-  "msg": "",
-  "lastPlayerId": 0,
-  "resource": "",
-  "resultCreateTime": 0
-}, {
-  "sort": 10,
-  "id": 1001057,
-  "id2": 0,
-  "name": "海口木木木",
-  "icon": "https://res.miyachat.com/beta/upload/icon/1582732800/5E576C2B/5E578CD3F6C2B/158279599024221010731_0.jpg",
-  "gold": 1011057,
-  "point": 1011057,
-  "num": 2,
-  "roomId": 0,
-  "roomName": "",
-  "likeNum": 0,
-  "isLike": false,
-  "msg": "",
-  "lastPlayerId": 0,
-  "resource": "",
-  "resultCreateTime": 0
-}, {
-  "sort": 11,
-  "id": 1018578,
-  "id2": 0,
-  "name": "活动回归倒计时",
-  "icon": "https://res.miyachat.com/beta/upload/icon/1582732800/5E576C2B/5E578CD3F6C2B/158279599024221010731_0.jpg",
-  "gold": 1004000,
-  "point": 1004000,
-  "num": 11,
-  "roomId": 0,
-  "roomName": "",
-  "likeNum": 0,
-  "isLike": false,
-  "msg": "",
-  "lastPlayerId": 0,
-  "resource": "",
-  "resultCreateTime": 0
-}, {
-  "sort": 12,
-  "id": 1001107,
-  "id2": 0,
-  "name": "miya737",
-  "icon": "https://res.miyachat.com/beta/upload/icon/1582732800/5E576C2B/5E578CD3F6C2B/158279599024221010731_0.jpg",
-  "gold": 1001107,
-  "point": 1001107,
-  "num": 1,
-  "roomId": 0,
-  "roomName": "",
-  "likeNum": 0,
-  "isLike": false,
-  "msg": "",
-  "lastPlayerId": 0,
-  "resource": "",
-  "resultCreateTime": 0
-}, {
-  "sort": 13,
-  "id": 1001106,
-  "id2": 0,
-  "name": "miya805",
-  "icon": "https://res.miyachat.com/beta/upload/icon/1582732800/5E576C2B/5E578CD3F6C2B/158279599024221010731_0.jpg",
-  "gold": 1001106,
-  "point": 1001106,
-  "num": 1,
-  "roomId": 0,
-  "roomName": "",
-  "likeNum": 0,
-  "isLike": false,
-  "msg": "",
-  "lastPlayerId": 0,
-  "resource": "",
-  "resultCreateTime": 0
-}, {
-  "sort": 14,
-  "id": 1001105,
-  "id2": 0,
-  "name": "dingwenjie2547",
-  "icon": "https://res.miyachat.com/beta/upload/icon/1582732800/5E576C2B/5E578CD3F6C2B/158279599024221010731_0.jpg",
-  "gold": 1001105,
-  "point": 1001105,
-  "num": 1,
-  "roomId": 0,
-  "roomName": "",
-  "likeNum": 0,
-  "isLike": false,
-  "msg": "",
-  "lastPlayerId": 0,
-  "resource": "",
-  "resultCreateTime": 0
-}, {
-  "sort": 15,
-  "id": 1001104,
-  "id2": 0,
-  "name": "凤凰大街",
-  "icon": "https://res.miyachat.com/beta/upload/icon/1582732800/5E576C2B/5E578CD3F6C2B/158279599024221010731_0.jpg",
-  "gold": 1001104,
-  "point": 1001104,
-  "num": 1,
-  "roomId": 0,
-  "roomName": "",
-  "likeNum": 0,
-  "isLike": false,
-  "msg": "",
-  "lastPlayerId": 0,
-  "resource": "",
-  "resultCreateTime": 0
-}, {
-  "sort": 16,
-  "id": 1001103,
-  "id2": 0,
-  "name": "是货、η别装纯",
-  "icon": "https://res.miyachat.com/beta/upload/icon/1582732800/5E576C2B/5E578CD3F6C2B/158279599024221010731_0.jpg",
-  "gold": 1001103,
-  "point": 1001103,
-  "num": 1,
-  "roomId": 0,
-  "roomName": "",
-  "likeNum": 0,
-  "isLike": false,
-  "msg": "",
-  "lastPlayerId": 0,
-  "resource": "",
-  "resultCreateTime": 0
-}, {
-  "sort": 17,
-  "id": 1001102,
-  "id2": 0,
-  "name": "New1001102",
-  "icon": "https://res.miyachat.com/beta/upload/icon/1582732800/5E576C2B/5E578CD3F6C2B/158279599024221010731_0.jpg",
-  "gold": 1001102,
-  "point": 1001102,
-  "num": 1,
-  "roomId": 0,
-  "roomName": "",
-  "likeNum": 0,
-  "isLike": false,
-  "msg": "",
-  "lastPlayerId": 0,
-  "resource": "",
-  "resultCreateTime": 0
-}, {
-  "sort": 18,
-  "id": 1001101,
-  "id2": 0,
-  "name": "miyaim26",
-  "icon": "https://res.miyachat.com/beta/upload/icon/1582732800/5E576C2B/5E578CD3F6C2B/158279599024221010731_0.jpg",
-  "gold": 1001101,
-  "point": 1001101,
-  "num": 1,
-  "roomId": 0,
-  "roomName": "",
-  "likeNum": 0,
-  "isLike": false,
-  "msg": "",
-  "lastPlayerId": 0,
-  "resource": "",
-  "resultCreateTime": 0
-}, {
-  "sort": 19,
-  "id": 1001100,
-  "id2": 0,
-  "name": "miya1596",
-  "icon": "https://res.miyachat.com/beta/upload/icon/1582732800/5E576C2B/5E578CD3F6C2B/158279599024221010731_0.jpg",
-  "gold": 1001100,
-  "point": 1001100,
-  "num": 1,
-  "roomId": 0,
-  "roomName": "",
-  "likeNum": 0,
-  "isLike": false,
-  "msg": "",
-  "lastPlayerId": 0,
-  "resource": "",
-  "resultCreateTime": 0
-}, {
-  "sort": 20,
-  "id": 1001099,
-  "id2": 0,
-  "name": "邀请有奖红包369",
-  "icon": "https://res.miyachat.com/beta/upload/icon/1582732800/5E576C2B/5E578CD3F6C2B/158279599024221010731_0.jpg",
-  "gold": 1001099,
-  "point": 1001099,
-  "num": 1,
-  "roomId": 0,
-  "roomName": "",
-  "likeNum": 0,
-  "isLike": false,
-  "msg": "",
-  "lastPlayerId": 0,
-  "resource": "",
-  "resultCreateTime": 0
-}]
+//mock.js 文件
+
+import Mock from 'mockjs' // 引入mockjs
+
+const Random = Mock.Random // Mock.Random 是一个工具类，用于生成各种随机数据
+
+const dataList = [] // 用于接受生成数据的数组
+
+
+// const template = {
+//   'Boolean': Random.boolean, // 可以生成基本数据类型
+//   'Natural': Random.natural(1, 10), // 生成1到100之间自然数
+//   'Integer': Random.integer(1, 100), // 生成1到100之间的整数
+//   'Float': Random.float(0, 100, 0, 5), // 生成0到100之间的浮点数,小数点后尾数为0到5位
+//   'Character': Random.character(), // 生成随机字符串,可加参数定义规则
+//   'String': Random.string(2, 10), // 生成2到10个字符之间的字符串
+//   'Range': Random.range(0, 10, 2), // 生成一个随机数组
+//   'Date': Random.date(), // 生成一个随机日期,可加参数定义日期格式
+//   'Image': Random.image(Random.size, '#02adea', 'Hello'), // Random.size表示将从size数据中任选一个数据
+//   'Color': Random.color(), // 生成一个颜色随机值
+//   'Paragraph': Random.paragraph(2, 5), // 生成2至5个句子的文本
+//   'Name': Random.name(), // 生成姓名
+//   'Url': Random.url(), // 生成web地址
+//   'Address': Random.province() // 生成地址
+// }
+
+for (let i = 1; i <= 200; i++) { // 可自定义生成的个数
+
+  const template = {
+    'sort': i,
+    'id': Random.integer(1, 10000), // 生成1到100之间的整数
+    "id2": Random.string(2, 10), // 生成2到10个字符之间的字符串
+    "name": Random.name(), // 生成姓名
+    "icon": Random.image(Random.size, '#02adea', 'Hello'), // Random.size表示将从size数据中任选一个数据
+    "gold": Random.integer(1, 10000), // 生成1到100之间的整数
+    "point": Random.integer(1, 10000), // 生成1到100之间的整数
+    "num": Random.integer(1, 20), // 生成1到100之间的整数
+    "roomId": Random.integer(1, 20), // 生成1到100之间的整数
+    "roomName": Random.string(2, 10), // 生成2到10个字符之间的字符串
+    "likeNum": 0,
+    "isLike": false,
+    "msg": "",
+    "lastPlayerId": 0,
+    "resource": "",
+    "resultCreateTime": 0,
+  }
+
+  dataList.push(template)
+
+}
+
 
 export default {
-  'get|/parameter/rank': option => {
+  'post|/parameter/rank': option => {
+    let params = JSON.parse(option.body)
+    let [page, size, total] = [params.page, params.pageSize, dataList.length]
+    page--
+    let totalPages = Math.ceil(total / size)
+    var newDataList = dataList.slice(page * size, (page + 1) * size)
     return {
       status: 200,
       message: 'success',
-      data: demoList
+      data: {
+        list: newDataList,
+        'total': total,
+        'totalPages': totalPages
+      }
     };
   }
 }
