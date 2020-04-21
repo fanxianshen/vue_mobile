@@ -169,3 +169,54 @@ export default {
 ```
 
 这样我们就可以每次随机生成10条数据，总数为100条，其中id和name使用的占位符，age是随机取出20-30中的数字，job是随机取出其后数组中的某一项，这在[mock文档](https://links.jianshu.com/go?to=https%3A%2F%2Fgithub.com%2Fnuysoft%2FMock%2Fwiki%2FSyntax-Specification)里都有说明。
+
+## 在card.vue中使用store里的数据
+
+```
+<template>
+  <div>
+      显示卡列表：<button @click="onAdd">追加卡信息</button>
+      <ul>
+        <li v-for="(result, index) in cardArr" :key="index">
+          卡号：{{result.no}} <br>
+          昵称：{{result.name}}
+        </li>
+      </ul>
+  </div>
+</template>
+<script>
+  // 导入state、mapMutations、actions   
+  import { mapState, mapMutations, actions   } from 'vuex';
+  export default {
+    data(){
+      return {
+      }
+    },
+    computed:{
+      // 映射带有命名空间的state，第一个参数模块名
+      ...mapState('card', [
+        cardArr: state => state.cardArr
+      ])
+    },
+    methods: {
+      // 映射带有命名空间的mutations，第一个参数模块名
+      ...mapMutations('card' ,[
+        'addCard',
+      ]),
+      // 映射带有命名空间的actions，第一个参数模块名
+      ...mapActions('card', [
+        'addCardFun'
+      ])
+      onAdd(){
+        ...
+        //this.$store.commit('card/addCard', data);
+        this.addCard(data);
+        // 通过actions调用
+        //this.$store.dispatch('card/addCardFun', data)
+        this.addCardFun(data);
+      }
+    }
+  }
+</script>
+```
+

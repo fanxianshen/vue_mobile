@@ -32,7 +32,9 @@ export default {
   components: {
     mizCountdown,
   },
-  created() {},
+  created() {
+    this.$store.dispatch('user/world')
+  },
 };
 </script>
 <style lang="scss">
