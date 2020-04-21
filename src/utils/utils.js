@@ -1,7 +1,4 @@
 
-// import axios from 'axios';
-// import dayjs from 'dayjs';
-
 /**
  * 获取URL参数
  *
@@ -73,6 +70,77 @@ function throttle(fn, interval = 2000) {
   };
 }
 
+/**
+ * 无缝轮播图，可触摸左右移动
+ * @param selector
+ */
+function initSwiper(selector) {
+  var oDiv = document.querySelector(selector);
+  var oUl = oDiv.getElementsByTagName('ul')[0];
+  var aLi = oDiv.getElementsByTagName('li');
+  var speed = -1;
+  var timer = null;
+  let isTouch = false;
+  let touchStartX = 0;
+  let touchEndX = 0;
+  let num = 0;
+  oUl.innerHTML += oUl.innerHTML;
+  oUl.style.width = aLi[0].offsetWidth * aLi.length + 'px';
+
+  const wWidth = $('.scroll').width();
+  const oUlWidth = parseInt(oUl.style.width);
+  timer = setInterval(function () {
+    oUl.style.left = oUl.offsetLeft + speed + 'px';
+    if (oUl.offsetLeft < -oUl.offsetWidth / 2) {
+      oUl.style.left = '0';
+    } else if (oUl.offsetLeft > 0) {
+      oUl.style.left = -oUl.offsetWidth / 2 + 'px';
+    }
+  }, 30);
+  oUl.addEventListener(
+    'touchstart',
+    e => {
+      clearInterval(timer);
+      isTouch = true;
+      touchStartX = e.touches[0].pageX;
+    },
+    false
+  );
+  oUl.addEventListener(
+    'touchmove',
+    e => {
+      touchEndX = e.touches[0].pageX;
+      let diff = touchEndX - touchStartX;
+      touchStartX = touchEndX;
+      num = diff + parseInt(oUl.style.left);
+      num >= 0 && (num = num - oUlWidth / 2);
+      num <= -oUlWidth + wWidth && (num = -oUlWidth + wWidth);
+      oUl.style.left = `${Math.floor(num)}px`;
+    },
+    false
+  );
+  oUl.addEventListener(
+    'touchend',
+    () => {
+      timer = setInterval(function () {
+        oUl.style.left = parseInt(oUl.style.left) + speed + 'px';
+        if (oUl.offsetLeft <= -oUl.offsetWidth / 2) {
+          if (parseInt(oUl.style.left) > -wWidth - oUl.offsetWidth) {
+            oUl.style.left = isTouch ?
+              -oUl.offsetWidth / 2 + wWidth :
+              parseInt(oUl.style.left) + oUl.offsetWidth / 2 + 'px';
+          } else {
+            oUl.style.left = oUl.offsetLeft + oUl.offsetWidth / 2 + 'px';
+          }
+        } else if (oUl.offsetLeft > 0) {
+          oUl.style.left = -oUl.offsetWidth / 2 + 'px';
+        }
+      }, 30);
+      isTouch = false;
+    },
+    false
+  );
+}
 
 let top = 0;
 
@@ -92,9 +160,19 @@ function stopBodyScroll(isFixed) {
 }
 
 
-
-
-
+/**
+ *  咪呀头像规则
+ *  @params { String } icon, 服务端返回的路径
+ *  @params { Number } iconType, 图像对应的尺寸0, 1, 2
+ */
+function miyaParsingPath(icon = '', iconType) {
+  if (/https?:\/\//i.test(icon)) {
+    return oldWay(icon);
+  } else {
+    iconType = typeof iconType !== 'undefined' ? iconType : 0;
+    return `https://res.miyachat.com/${icon}` + (iconType ? `?x-oss-process=style/icon_${iconType}_jpg` : '');
+  }
+}
 
 
 
@@ -332,15 +410,15 @@ const cleanCache = (url, isForce, act) => {
     return;
   }
 
-  // axios.get(url).then(res => {
-  //   // 如果没打开过，或者版本号不一样，则刷新
-  //   if ((webVer && webVer !== res.data.version) || (window.webVer && window.webVer !== res.data.version)) {
-  //     localStorage.setItem(act, res.data.version);
-  //     location.replace(getClearCacheUrl(location.href, '_t', res.data.version));
-  //   } else {
-  //     localStorage.setItem(act, res.data.version);
-  //   }
-  // }).catch(err => { });
+  axios.get(url).then(res => {
+    // 如果没打开过，或者版本号不一样，则刷新
+    if ((webVer && webVer !== res.data.version) || (window.webVer && window.webVer !== res.data.version)) {
+      localStorage.setItem(act, res.data.version);
+      location.replace(getClearCacheUrl(location.href, '_t', res.data.version));
+    } else {
+      localStorage.setItem(act, res.data.version);
+    }
+  }).catch(err => { });
 };
 
 function createFormSubmit(url, params, target) {
@@ -652,11 +730,11 @@ function isToday(t) {
 }
 
 // 返回零点时间
-// function getZeroDate(time) {
-//   return time ?
-//     dayjs(time).format('YYYY-MM-DD') + ' 00:00:00' :
-//     dayjs().format('YYYY-MM-DD') + ' 00:00:00';
-// }
+function getZeroDate(time) {
+  return time ?
+    dayjs(time).format('YYYY-MM-DD') + ' 00:00:00' :
+    dayjs().format('YYYY-MM-DD') + ' 00:00:00';
+}
 
 /**
  *
@@ -747,7 +825,9 @@ export {
   getQueryString,
   debounce,
   throttle,
+  initSwiper,
   stopBodyScroll,
+  miyaParsingPath,
   formatDuring,
   isEmptyObject,
   isArray,
@@ -761,6 +841,7 @@ export {
   formatDate,
   sleep,
   isToday,
+  getZeroDate,
   createDateAry,
   createHref,
   addZero

@@ -54,7 +54,6 @@ export default {
   },
   watch: {
     endTime (val) {
-      console.log(val)
       this.handleTimer();
     }
   },

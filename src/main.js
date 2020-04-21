@@ -1,16 +1,14 @@
 import Vue from 'vue'
 import App from './App.vue'
+import './registerServiceWorker'
 import router from './router'
+import store from './store'
+import './assets/style/reset.css';
 
 Vue.config.productionTip = false
 
-;(function(){
-  var rem = document.createElement('script');
-  rem.src = './rem.js';
-  document.body.appendChild(rem)
-})()
-
 new Vue({
-  render: h => h(App),
-  router
+  router,
+  store,
+  render: h => h(App)
 }).$mount('#app')

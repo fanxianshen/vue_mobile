@@ -1,24 +1,28 @@
 <template>
   <div id="app">
-    <div class="test">23123</div>
-    <router-view></router-view>
+    <router-view/>
   </div>
 </template>
 
-<script>
-
-
-export default {
-  name: 'App',
-}
-</script>
-
 <style lang="scss">
-.test{
-  width:30px;
-  height: 30px;
-  background: red;
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
 }
-@import "./assets/style/reset";
-</style>
 
+#nav {
+  padding: 30px;
+
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+
+    &.router-link-exact-active {
+      color: #42b983;
+    }
+  }
+}
+</style>

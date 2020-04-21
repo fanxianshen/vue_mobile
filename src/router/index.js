@@ -1,26 +1,32 @@
 import Vue from 'vue'
-import Router from 'vue-router'
+import VueRouter from 'vue-router'
+import Home from '../views/Home.vue'
 
-Vue.use(Router)
+Vue.use(VueRouter)
 
-const Routes = [{ // 首页模板
+const routes = [{ // 首页模板
     path: '/',
-    name: 'index',
-    component: () => import('../pages/index'),
+    name: 'main',
+    component: () => import('../views/Home'),
     redirect: '/rank',
     children: [{
       path: '/rank',
       name: 'rank',
-      component: () => import('../components/rankList')
+      component: () => import('../components/rankList') // 寻宝页
     }, {
       path: '/gift',
       name: 'gift',
-      component: () => import('../components/sendGift')
+      component: () => import('../components/sendGift') // 榜单页
     }, {
       path: '/surprise',
       name: 'surprise',
-      component: () => import('../components/surprise')
+      component: () => import('../components/surprise') // 兑换页
     }]
+  },
+  {
+    path: '/about',
+    name: 'About',
+    component: () => import('../views/About.vue')
   },
   {
     path: '*',
@@ -28,10 +34,10 @@ const Routes = [{ // 首页模板
   }
 ]
 
-const createRouter = () => new Router({
-  routes: Routes
+const router = new VueRouter({
+  mode: 'history',
+  base: process.env.BASE_URL,
+  routes
 })
 
-const router = createRouter()
-
-export default router;
+export default router
