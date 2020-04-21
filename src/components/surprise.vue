@@ -12,7 +12,7 @@
             <img :src="item" alt="" title="">
           </li>
         </ul>
-        <div :class="getBtnStatus(startGift).cls" @click="getWelfare(startGift,1)"></div>
+        <div :class="getBtnStatus(3).cls" @click="getWelfare(1,3)"></div>
       </div>
     </div>
     <div class="moon_gift">
@@ -20,22 +20,27 @@
         首次儲值2000金幣可以獲得
         <span class="yellow">週年月亮禮包</span>一個
       </p>
-      <img class="gift_box" src="../assets/img/moon_box.png">
+      <img class="gift_box" src="../assets/img/moon_box_big.png">
       <div class="gift_content moon_gift_content">
         <ul>
           <li v-for="(item,index) in moonImg" :key="`moon_${index}`">
             <img :src="item" alt="" title="">
           </li>
         </ul>
-        <div :class="getBtnStatus(moonGift).cls" @click="getWelfare(moonGift,2)"></div>
+        <div :class="getBtnStatus(2).cls" @click="getWelfare(1,2)"></div>
       </div>
     </div>
+    <modal-mask :show="false">11111</modal-mask>
   </div>
 </template>
 
 <script>
+import ModalMask from "@/components/common/modalMask";
 export default {
   name: "Surprise",
+  components: {
+    ModalMask,
+  },
   data() {
     return {
       showGift: false,
@@ -58,14 +63,7 @@ export default {
   },
   methods: {
     // 获取按钮状态
-    getBtnStatus(item) {
-      if (!item) {
-        return {
-          txt: "未获得",
-          cls: "get_btn",
-        };
-      }
-      let { status } = item;
+    getBtnStatus(status) {
       switch (status) {
         case 3: // 待完成
           return {
@@ -83,6 +81,10 @@ export default {
             cls: "get_btn",
           };
       }
+    },
+    getWelfare(id, type) {
+      if (type != 2) return;
+      console.log(333);
     },
   },
 };
@@ -155,6 +157,25 @@ export default {
       width: 670px;
       height: 514px;
     }
+  }
+
+  .get_btn {
+    background-image: url("../assets/img/get_gift.png");
+    width: 396px;
+    height: 112px;
+    background-size: 100% 100%;
+    position: absolute;
+    bottom: -73px;
+    left: 50%;
+    margin-left: -198px;
+  }
+
+  .active {
+    background-image: url("../assets/img/get_gift_actived.png");
+  }
+
+  .actived {
+    background-image: url("../assets/img/get_gift_read.png");
   }
 }
 </style>

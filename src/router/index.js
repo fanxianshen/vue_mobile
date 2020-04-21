@@ -12,14 +12,23 @@ const routes = [{ // 首页模板
     children: [{
       path: '/rank',
       name: 'rank',
-      component: () => import('../components/rankList') // 寻宝页
+      meta: {
+        title: "排行榜"
+      },
+      component: () => import('../components/rankList')
     }, {
       path: '/gift',
       name: 'gift',
-      component: () => import('../components/sendGift') // 榜单页
+      meta: {
+        title: "连储送豪礼"
+      },
+      component: () => import('../components/sendGift')
     }, {
       path: '/surprise',
       name: 'surprise',
+      meta: {
+        title: "首储大惊喜"
+      },
       component: () => import('../components/surprise') // 兑换页
     }]
   },
@@ -34,10 +43,20 @@ const routes = [{ // 首页模板
   }
 ]
 
+
 const router = new VueRouter({
-  mode: 'history',
+  // mode: 'history',
   base: process.env.BASE_URL,
   routes
 })
+
+router.beforeEach((to, from, next) => {
+  console.log(to, '前置第一个参数')
+  console.log(from, '前置第二个参数')
+  console.log(next, '前置第三个参数')
+  next();
+});
+
+
 
 export default router

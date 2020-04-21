@@ -4,6 +4,7 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 import './assets/style/reset.css';
+require('./mock');
 
 Vue.config.productionTip = false
 

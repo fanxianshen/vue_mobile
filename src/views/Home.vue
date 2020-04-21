@@ -26,10 +26,21 @@
 <script>
 // @ is an alias to /src
 import mizCountdown from "@/components/common/mizCountdown";
+import axios from 'axios';
 export default {
   name: "Home",
   components: {
     mizCountdown,
+  },
+  created() {
+    axios
+      .get("/parameter/query")
+      .then((res) => {
+        console.log(2222,res)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   },
 };
 </script>
